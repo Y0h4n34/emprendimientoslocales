@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela Torres Belleza y Uñas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: #e91e63;
+            transform: translateY(-2px);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.8), rgba(255, 64, 129, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23fce4ec;stop-opacity:1" /><stop offset="100%" style="stop-color:%23f8bbd9;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23bg)"/><g opacity="0.1"><circle cx="200" cy="150" r="80" fill="%23e91e63"/><circle cx="800" cy="300" r="120" fill="%23ff4081"/><circle cx="1000" cy="600" r="100" fill="%23e91e63"/><circle cx="300" cy="650" r="60" fill="%23ff4081"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 600px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+        }
+
+        /* Secciones */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            border-radius: 2px;
+        }
+
+        /* Historia */
+        .historia {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .historia::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .historia-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .historia p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Servicios */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .servicio-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .servicio-card:hover::before {
+            left: 100%;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .servicio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #e91e63;
+        }
+
+        .servicio-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .servicio-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Galería */
+        .galeria {
+            background: #f8f9fa;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .galeria-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .galeria-item:hover img {
+            filter: brightness(1.1);
+        }
+
+        .galeria-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(233, 30, 99, 0.8), rgba(255, 64, 129, 0.8));
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .galeria-item:hover .galeria-overlay {
+            opacity: 1;
+        }
+
+        /* Contacto */
+        .contacto {
+            background: linear-gradient(135deg, #e91e63, #ff4081);
+            color: white;
+            text-align: center;
+        }
+
+        .contacto h2 {
+            color: white;
+        }
+
+        .contacto-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contacto-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contacto-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contacto-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .contacto-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contacto-item p {
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .historia {
+                padding: 2rem;
+            }
+        }
+
+        /* Efectos de scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Daniela Torres</h1>
+            <p>Belleza y Uñas</p>
+            <p>Transformando tu belleza con pasión y profesionalismo</p>
+            <a href="#contacto" class="cta-button">Reserva tu cita</a>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section id="historia" class="section">
+        <h2 class="fade-in">Nuestra Historia</h2>
+        <div class="historia fade-in">
+            <div class="historia-content">
+                <p>Todo comenzó con una pasión por la belleza y el deseo de hacer sentir especial a cada mujer. Daniela Torres inició este emprendimiento desde su hogar, con la visión de crear un espacio donde la elegancia y el cuidado personal se encuentran. Con años de experiencia y una dedicación constante a la perfección, hemos crecido hasta convertirnos en el lugar de confianza para quienes buscan realzar su belleza natural. Cada uña que diseñamos y cada tratamiento que realizamos lleva el sello de calidad y amor por nuestro trabajo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="section">
+        <h2 class="fade-in">Nuestros Servicios</h2>
+        <div class="servicios-grid">
+            <div class="servicio-card slide-in-left">
+                <div class="servicio-icon">💅</div>
+                <h3>Manicura y Pedicura</h3>
+                <p>Cuidado completo de uñas con técnicas profesionales y productos de alta calidad para unas manos y pies perfectos.</p>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-icon">✨</div>
+                <h3>Uñas Acrílicas</h3>
+                <p>Extensiones duraderas y elegantes que te permiten lucir uñas largas y hermosas con diseños únicos.</p>
+            </div>
+            <div class="servicio-card slide-in-right">
+                <div class="servicio-icon">🎨</div>
+                <h3>Nail Art</h3>
+                <p>Diseños creativos y personalizados que expresan tu estilo único con técnicas artísticas innovadoras.</p>
+            </div>
+            <div class="servicio-card slide-in-left">
+                <div class="servicio-icon">💎</div>
+                <h3>Uñas de Gel</h3>
+                <p>Acabado natural y duradero que fortalece tus uñas mientras mantiene un brillo impecable.</p>
+            </div>
+            <div class="servicio-card fade-in">
+                <div class="servicio-icon">🌟</div>
+                <h3>Tratamientos Especiales</h3>
+                <p>Cuidados específicos para fortalecer y nutrir tus uñas, devolviéndoles su salud y belleza natural.</p>
+            </div>
+            <div class="servicio-card slide-in-right">
+                <div class="servicio-icon">💄</div>
+                <h3>Servicios de Belleza</h3>
+                <p>Tratamientos faciales y de belleza complementarios para realzar tu imagen integral.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="section galeria">
+        <h2 class="fade-in">Nuestros Trabajos</h2>
+        <div class="galeria-grid">
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23fce4ec'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='20' font-family='Arial'>Manicura</text></g></svg>" alt="Manicura elegante">
+                <div class="galeria-overlay">
+                    <p>Manicura clásica con acabado perfecto</p>
+                </div>
+            </div>
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f8bbd9'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='18' font-family='Arial'>Nail Art</text></g></svg>" alt="Diseño de uñas artístico">
+                <div class="galeria-overlay">
+                    <p>Diseños únicos y creativos</p>
+                </div>
+            </div>
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23fce4ec'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='16' font-family='Arial'>Acrílicas</text></g></svg>" alt="Uñas acrílicas">
+                <div class="galeria-overlay">
+                    <p>Uñas acrílicas con diseños modernos</p>
+                </div>
+            </div>
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f8bbd9'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='20' font-family='Arial'>Pedicura</text></g></svg>" alt="Pedicura spa">
+                <div class="galeria-overlay">
+                    <p>Pedicura relajante y revitalizante</p>
+                </div>
+            </div>
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23fce4ec'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='18' font-family='Arial'>Gel</text></g></svg>" alt="Uñas de gel">
+                <div class="galeria-overlay">
+                    <p>Acabado natural con uñas de gel</p>
+                </div>
+            </div>
+            <div class="galeria-item fade-in">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f8bbd9'/><g fill='%23e91e63'><circle cx='200' cy='150' r='50'/><text x='200' y='160' text-anchor='middle' font-size='16' font-family='Arial'>Especial</text></g></svg>" alt="Tratamiento especial">
+                <div class="galeria-overlay">
+                    <p>Tratamientos especiales de belleza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section contacto">
+        <h2 class="fade-in">Contáctanos</h2>
+        <div class="contacto-info">
+            <div class="contacto-item fade-in">
+                <i>📱</i>
+                <h3>Teléfono</h3>
+                <p>+503 7XXX-XXXX</p>
+            </div>
+            <div class="contacto-item fade-in">
+                <i>📧</i>
+                <h3>Email</h3>
+                <p>danielatorres@belleza.com</p>
+            </div>
+            <div class="contacto-item fade-in">
+                <i>📍</i>
+                <h3>Ubicación</h3>
+                <p>San Salvador, El Salvador</p>
+            </div>
+            <div class="contacto-item fade-in">
+                <i>🕒</i>
+                <h3>Horarios</h3>
+                <p>Lun-Sáb: 8:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Daniela Torres Belleza y Uñas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Efectos de scroll
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleNavbarScroll);
+        window.addEventListener('load', handleScroll);
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
